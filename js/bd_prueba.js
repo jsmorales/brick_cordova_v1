@@ -107,7 +107,7 @@ $(function(){
     //no funciona lo del icono...
     */
     localNotification.add(103, {
-      seconds: 1,
+      seconds: 5,
       title: "App lista!",
       message: "La aplicación ha creado la BD y esta lista para usarse.",
       icon: "../notification.png",
