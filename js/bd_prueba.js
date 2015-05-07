@@ -76,7 +76,6 @@ $(function(){
     });//cierra transaccion principal
     //-------------------------------------------------------------------------------------------------------------------
 
-
     //#################################################################################
     //inicia una segunda transaccion de tipo select para mostrar lo que se ha insertado
     db.transaction(function(tx) {
@@ -91,6 +90,34 @@ $(function(){
 
     });//cierra segunda transaccion
     //#################################################################################
+
+    //=================================================================================
+    /*
+    funcionalidad para las notificaciones, del plugin
+    http://plugins.cordova.io/#/package/com.cordova.plugin.localnotificationplugin
+    el objeto de opciones:
+    var options = {
+        seconds: int,
+        ticker: string, //Android only & Optional
+        title: string, //Android only & Optional
+        icon: string //Android only & Optional
+        message: string,
+        badge: int
+    };
+    //no funciona lo del icono...
+    */
+    localNotification.add(103, {
+      seconds: 1,
+      title: "App lista!",
+      message: "La aplicación ha creado la BD y esta lista para usarse.",
+      icon: "../notification.png",
+      badge: 1
+    });
+    //===================================================================================
+
+    //===================================================================================
+
+    //===================================================================================
 
   }
   //------------------------------------------------------------------
