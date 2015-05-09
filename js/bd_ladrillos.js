@@ -19,11 +19,11 @@ $(function(){
         //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
         //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-        /*inserta valores en la tabla, un insert normal*/
+        /*inserta valores en la tabla, un insert normal
         tx.executeSql("INSERT INTO ladrillos (nombre,alt_lad,anch_lad) VALUES (?,?,?)", ["lad1",4.55,2.23], function(tx, res) {
         }, function(e) {
           console.log("ERROR: " + e.message);
-        });
+        });*/
       });//cierra transaccion principal
       //-------------------------------------------------------------------------------------------------------------------
     };
@@ -35,10 +35,18 @@ $(function(){
 
         tx.executeSql("select * from ladrillos;", [], function(tx, res) {
           //console.log(res.rows.item(0).nombre);
-          for(var i = 0;i <= res.rows.length;i++){
-            //console.log(res.rows.item(i).nombre);
-            $("#res").append('<li href="#" class="list-group-item">'+res.rows.item(i).nombre+'-'+res.rows.item(i).alt_lad+'-'+res.rows.item(i).anch_lad+'</li>');
+
+          //validar si existen campos, si no los hay mostrar mensaje de que no hay nada
+          if(res.rows.length > 0){
+              $("#res").html("");
+              for(var i = 0;i <= res.rows.length;i++){
+                //console.log(res.rows.item(i).nombre);
+                $("#res").append('<li href="#" class="list-group-item">'+res.rows.item(i).nombre+'-'+res.rows.item(i).alt_lad+'-'+res.rows.item(i).anch_lad+'</li>');
+              };
+          }else{
+              $("#res").append('<li href="#" class="list-group-item">En el momento no hay ladrillos creados.</li>');
           };
+
         });
 
       });//cierra segunda transaccion
