@@ -41,7 +41,14 @@ $(function(){
               $("#res").html("");
               for(var i = 0;i <= res.rows.length;i++){
                 //console.log(res.rows.item(i).nombre);
-                $("#res").append('<li href="#" class="list-group-item">'+res.rows.item(i).nombre+'-'+res.rows.item(i).alt_lad+'-'+res.rows.item(i).anch_lad+'</li>');
+                $("#res").append('<li href="#" name="ladrillo" class="list-group-item" data-id_lad="'+res.rows.item(i).id+'">'+res.rows.item(i).id+'-'+res.rows.item(i).nombre+'-'+res.rows.item(i).alt_lad+'-'+res.rows.item(i).anch_lad+'</li>');
+
+                //funcion al tocar un elemento de la lista
+                $("[name*='ladrillo']").click(function(){
+                    var id_lad = $(this).attr("data-id_lad");
+                    console.log("click al ladrillo "+id_lad);
+                });
+
               };
           }else{
               $("#res").append('<li href="#" class="list-group-item">En el momento no hay ladrillos creados.</li>');
@@ -66,6 +73,7 @@ $(function(){
 
     ver_tabla_ladrillos();
 
+    //
     $("#btn_inserta").click(function(){
 
       var nombre = $("#nombre").val();
@@ -76,6 +84,8 @@ $(function(){
       $("#res").html("");
       ver_tabla_ladrillos();
     });
+
+    //
 
     //===================================================================================
 
