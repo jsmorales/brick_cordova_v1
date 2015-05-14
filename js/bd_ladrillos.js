@@ -84,6 +84,10 @@ $(function(){
           });
       });
 
+      clear_form();
+    };
+
+    function clear_form(){
       $("#form_lads")[0].reset();
     };
 
@@ -117,6 +121,9 @@ $(function(){
     });
 
     //
+    $("#btn_limpiar").click(function(){
+      clear_form();
+    });
 
     //===================================================================================
 
