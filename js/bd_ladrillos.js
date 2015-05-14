@@ -93,7 +93,7 @@ $(function(){
       var ladrillo = get_ladrillo();
 
       inserta_ladrillos(ladrillo.nombre,ladrillo.alto,ladrillo.ancho);
-      
+      //--------------------------------------------------------------
       $("#res").html("");
       ver_tabla_ladrillos();
     });
