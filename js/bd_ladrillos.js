@@ -45,8 +45,23 @@ $(function(){
 
                 //funcion al tocar un elemento de la lista
                 $("[name*='ladrillo']").click(function(){
+
                     var id_lad = $(this).attr("data-id_lad");
                     console.log("click al ladrillo "+id_lad);
+
+                    //hacer select con el id capturado y cargarlo dentro del form++++++++++++++++++++++++++
+                    db.transaction(function(tx){
+                      tx.executeSql("select * from ladrillos where id = "+id_lad+";",[],function(tx,res){
+                        //---------------------------------------------------------------
+                        //carga los valores en el form
+                        $("#nombre").val(res.rows.item(0).nombre);
+                        $("#alt_lad").val(res.rows.item(0).alt_lad);
+                        $("#anch_lad").val(res.rows.item(0).anch_lad);
+                        console.log("se ha cargado el ladrillo "+res.rows.item(0).nombre);
+                        //----------------------------------------------------------------
+                      });
+                    });
+                    //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
                 });
 
               };
@@ -63,10 +78,13 @@ $(function(){
     function inserta_ladrillos(nombre,alt_lad,anch_lad){
       db.transaction(function(tx) {
         tx.executeSql("INSERT INTO ladrillos (nombre,alt_lad,anch_lad) VALUES (?,?,?)", [nombre,alt_lad,anch_lad], function(tx, res) {
+
           }, function(e) {
             console.log("ERROR: " + e.message);
           });
       });
+
+      $("#form_lads")[0].reset();
     };
 
     function get_ladrillo(){
@@ -87,7 +105,7 @@ $(function(){
 
     ver_tabla_ladrillos();
 
-    //
+    //-----------------------------------------------------------------------------------
     $("#btn_inserta").click(function(){
 
       var ladrillo = get_ladrillo();
