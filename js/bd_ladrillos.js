@@ -54,6 +54,7 @@ $(function(){
                       tx.executeSql("select * from ladrillos where id = "+id_lad+";",[],function(tx,res){
                         //---------------------------------------------------------------
                         //carga los valores en el form
+                        $("#id_lad").val(res.rows.item(0).id);
                         $("#nombre").val(res.rows.item(0).nombre);
                         $("#alt_lad").val(res.rows.item(0).alt_lad);
                         $("#anch_lad").val(res.rows.item(0).anch_lad);
@@ -84,6 +85,19 @@ $(function(){
           });
       });
 
+      clear_form();
+    };
+
+    function elimina_ladrillo(id_lad_delete){
+      db.transaction(function(tx) {
+        tx.executeSql("DELETE FROM ladrillos WHERE id = "+id_lad_delete,  [] , function(tx, res) {
+
+          }, function(e) {
+            console.log("ERROR: " + e.message);
+          });
+      });
+
+      ver_tabla_ladrillos();
       clear_form();
     };
 
@@ -120,6 +134,12 @@ $(function(){
       ver_tabla_ladrillos();
     });
 
+
+    $("#btn_eliminar").click(function(){
+        var id_lad_delete = $("#id_lad").val();
+        console.log(id_lad_delete);
+        elimina_ladrillo(id_lad_delete);
+    });
     //
     $("#btn_limpiar").click(function(){
       clear_form();

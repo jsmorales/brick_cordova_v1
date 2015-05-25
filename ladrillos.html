@@ -41,7 +41,7 @@
 		<h3 id="p_device">Crear un ladrillo</h3>
 
     <form id="form_lads">
-
+	  <input type="text" id="id_lad" value="" hidden="true">
       <label for="nombre">Nombre</label>
       <input type="text" class="form-control" id="nombre">
 
@@ -53,7 +53,8 @@
     </form>
 		<hr>
     <button id="btn_inserta" class="btn btn-success" type="button">Crear</button>
-		<button id="btn_limpiar" class="btn btn-warning" type="button">Limpiar</button>
+	<button id="btn_limpiar" class="btn btn-warning" type="button">Limpiar</button>
+	<button id="btn_eliminar" class="btn btn-danger" type="button">Eliminar</button>
     <hr>
     <h4>Ladrillos Creados</h4>
 		<ul id="res" class="list-group">
