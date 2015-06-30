@@ -101,6 +101,19 @@ $(function(){
       clear_form();
     };
 
+    function actualiza_ladrillo(id_lad_update,nombre,alt_lad,anch_lad){
+      db.transaction(function(tx) {
+        tx.executeSql("UPDATE ladrillos SET nombre = ?,alt_lad = ?,anch_lad = ? WHERE id = "+id_lad_update,  [nombre,alt_lad,anch_lad] , function(tx, res) {
+
+          }, function(e) {
+            console.log("ERROR: " + e.message);
+          });
+      });
+
+      ver_tabla_ladrillos();
+      clear_form();
+    };
+
     function clear_form(){
       $("#form_lads")[0].reset();
     };
@@ -145,6 +158,15 @@ $(function(){
       clear_form();
     });
 
+    $("#btn_actualizar").click(function(){
+        var id_lad_update = $("#id_lad").val();
+
+        var ladrillo = get_ladrillo();
+
+        console.log("El id ladrillo a actualizar: "+id_lad_update);
+
+        actualiza_ladrillo(id_lad_update,ladrillo.nombre,ladrillo.alto,ladrillo.ancho);
+    });
     //===================================================================================
 
     //===================================================================================
